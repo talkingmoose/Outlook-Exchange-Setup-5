@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/sbin</string>
+	</dict>
+	<key>Label</key>
+	<string>net.talkingmoose.OutlookExchangeSetup5.0</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/osascript</string>
+		<string>"/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.0.scpt"</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>WatchPaths</key>
+	<array>
+		<string>~/Library/Group Containers/UBF8T346G9.Office/Outlook/Outlook 15 Profiles/Main Profile/Data/Outlook.sqlite</string>
+	</array>
+</dict>
+</plist>
