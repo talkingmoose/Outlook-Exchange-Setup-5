@@ -10,17 +10,13 @@
 		<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/sbin</string>
 	</dict>
 	<key>Label</key>
-	<string>net.talkingmoose.OutlookExchangeSetup5.0</string>
+	<string>net.talkingmoose.OutlookExchangeSetupLaunchAgent</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/bin/osascript</string>
-		<string>"/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.0.scpt"</string>
+		<string>/bin/sh</string>
+		<string>/Library/Talking Moose Industries/Scripts/OutlookExchangeSetupLaunchAgent.sh</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
-	<key>WatchPaths</key>
-	<array>
-		<string>~/Library/Group Containers/UBF8T346G9.Office/Outlook/Outlook 15 Profiles/Main Profile/Data/Outlook.sqlite</string>
-	</array>
 </dict>
 </plist>
