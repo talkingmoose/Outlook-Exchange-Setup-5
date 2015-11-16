@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+
+<!--
+Outlook Exchange Setup 5.0
+© Copyright 2008-2015 William Smith
+bill@officeformachelp.com
+
+Except where otherwise noted, this work is licensed under
+http://creativecommons.org/licenses/by/3.0/
+
+This file is one of four files for assisting a user with configuring
+an Exchange account in Microsoft Outlook 2016 for Mac:
+
+1. Outlook Exchange Setup 5.0.scpt
+2. OutlookExchangeSetupLaunchAgent.sh
+3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+4. com.microsoft.Outlook.plist for creating a configuraiton profile
+
+These scripts and files may be freely modified for personal or commercial
+purposes but may not be republished for profit without prior consent.
+
+If you find these resources useful or have ideas for improving them,
+please let me know. It is only compatible with Outlook 2016 for Mac.
+-->
+
 <dict>
 	<key>Disabled</key>
 	<false/>
