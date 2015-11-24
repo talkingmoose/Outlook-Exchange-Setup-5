@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# install the Outlook configuration profile
+/usr/bin/profiles -IF /private/tmp/Microsoft_Outlook_2016_First_Run.mobileconfig
+/bin/rm /private/tmp/Microsoft_Outlook_2016_First_Run.mobileconfig
+
+# adjust ownership and permissions for the launch agent
+/usr/bin/chown root:wheel /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+/usr/bin/chmod 644 /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+
+# make the shell script executable
+/usr/bin/chmod +x '/Library/Talking Moose Industries/Scripts/OutlookExchangeSetupLaunchAgent.sh'
+
+exit 0
