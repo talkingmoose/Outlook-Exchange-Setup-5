@@ -1,14 +1,44 @@
 #!/bin/sh
 
-# install the Outlook configuration profile
-/usr/bin/profiles -IF /private/tmp/Microsoft_Outlook_2016_First_Run.mobileconfig
-/bin/rm /private/tmp/Microsoft_Outlook_2016_First_Run.mobileconfig
+# --------------------------------------------
+# Outlook Exchange Setup 5.0
+# © Copyright 2008-2015 William Smith
+# bill@officeformachelp.com
+# 
+# Except where otherwise noted, this work is licensed under
+# http://creativecommons.org/licenses/by/4.0/
+#
+# This file accompanies four files for assisting a user with configuring
+# an Exchange account in Microsoft Outlook 2016 for Mac:
+# 
+# 1. Outlook Exchange Setup 5.0.scpt
+# 2. OutlookExchangeSetupLaunchAgent.sh
+# 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+# 4. com.microsoft.Outlook.plist for creating a configuraiton profile
+# 
+# These scripts and files may be freely modified for personal or commercial
+# purposes but may not be republished for profit without prior consent.
+# 
+# If you find these resources useful or have ideas for improving them,
+# please let me know. It is only compatible with Outlook 2016 for Mac.
+# --------------------------------------------
+
+# install the Outlook configuration profile plus additional profiles
+cd '/tmp/Outlook Exchange Setup 5.0'
+PROFILES=$( ls | grep .mobileconfig )
+for APROFILE in $PROFILES
+do
+	profiles -IF $APROFILE
+done
+
+# remove the temporary profiles folder from /private/tmp
+rm -R '/tmp/Outlook Exchange Setup 5.0'
 
 # adjust ownership and permissions for the launch agent
-/usr/bin/chown root:wheel /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
-/usr/bin/chmod 644 /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+chown root:wheel /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+chmod 644 /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 
 # make the shell script executable
-/usr/bin/chmod +x '/Library/Talking Moose Industries/Scripts/OutlookExchangeSetupLaunchAgent.sh'
+chmod +x '/Library/Talking Moose Industries/Scripts/OutlookExchangeSetupLaunchAgent.sh'
 
 exit 0
