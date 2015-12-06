@@ -3,143 +3,25 @@ Outlook Exchange Setup 5.0
 bill@officeformachelp.com
 
 
-Copyright and Creative Commons license
+Purpose
 
-Except where otherwise noted, this work is licensed under http://creativecommons.org/licenses/by/4.0/.
-
-These scripts may be freely modified for personal or commercial purposes but may not be republished for profit without prior consent.
-
-If you find this script useful or have ideas for improving it, please let me know. It is compatible with Outlook 2016 for Mac and intended for use with volume license editions of Office 2016 for Mac. Office 365 customers should not disable Outlook's startup windows because users need to activate the software prior to connecting to their Exchange Online accounts and Autodiscover should already work correctly.
-
-Office 2016 for Mac requires OS X 10.10 Yosemite or higher. Therefore, this script supports only OS X 10.10 and higher.
-
-
-Purpose of the Outlook Exchange Setup 5.0 scripts
-
-An administrator can modify these scripts to assist his or her Outlook users with the setups of their Exchange server accounts. Every company's network is different but I've designed the script to provide enough ideas for a novice scripter to adapt it for use in his or her network in just a few minutes.
-
-The script assumes the user's Full Name (also called the "Display name" in Active Directory environments) and email address are in the form of:
-
-	"First Last" and "first.last@domain.com"
-
-But an administrator can easily modify it for other variations such as:
-
-	"Last, First" and "first@domain.com
-
-The script works especially well if the Mac is bound to Active Directory where the user's OS X Account Name (short name) matches the "User logon name" in Active Directory.
-
-An administrator must first edit the OutlookExchangeSetup5.0.scpt script in "Script Editor.app" found in /Applications/Utilities and modify it with server names appropriate to the network. If the user's computer login (short name, long name, etc.) is consistent with his Exchange server's login then it will work with little need for modification.
-
-
-How do these scripts differ from the previous scripts?
-
-The primary script no longer triggers using an Outlook Schedule. Microsoft removed Schedules in Outlook 2016. This new script now uses a launchd agent to watch for sepcific files in the current user's home folder. Those files are created when the user launches Outlook for the first time. As soon as launchd sees the new files, it runs the script to configure the Exchange account. The end result is the user will launch Outlook for the first time and Outlook should almost immediately prompt for his or her Exchange account password.
-
-This script does not support Microsoft Entourage. It also does not support Microsoft Outlook 2011 (although, I may see about modifying it to do so if demand warrants.)
-
-The secondary script is included as a convenience to administrators for bundling together the primary script, the launchd agent and included configuration profiles into an Apple Installer package file (.pkg). Administrators may prefer to use other tools for packaging for deployment.
+Outlook Exchange Setup 5.0 provides your Outlook 2016 for Mac users with automatic setups of their Exchange accounts. It works especially well if the Mac is bound to Active Directory.
 
 
 Support
 
-E-mail me at bill@officeformachelp.com. I will make every effort to answer questions about the scripts and work to correct bugs you may find.
+Office 2016 for Mac requires OS X 10.10 Yosemite or higher. Therefore, this script supports only OS X 10.10 and higher.
+
+Outlook Exchange Setup 5.0 Administrator's Guide
+https://github.com/talkingmoose/Outlook-Exchange-Setup-5.0/wiki
+
+Use GitHub's Issues page for this project or email me at bill@officeformachelp.com. I will make every effort to answer questions about the scripts and work to correct bugs you may find.
+
+If you find this script useful or have ideas for improving it, please let me know. It is intended for use with volume license editions of Office 2016 for Mac. Office 365 customers should not disable Outlook's startup windows because users need to activate the software prior to connecting to their Exchange Online accounts and Autodiscover should already work correctly.
 
 
-Change log
+License
 
-5.0.0
+This work is licensed under http://creativecommons.org/licenses/by/4.0/.
 
-• Removed support for upgrading from Microsoft Entourage.
-• Removed checks for OS X version. The script should no longer need them.
-• Bundled plists with script for creating configuration profiles to eliminate Office startup windows and set AutoUpdate to manually check for updates.
-• Replaced script for collecting files with a new script to package the setup script, launchd agent and configuration profiles.
-• Updated suggested instructions for deployment.
-• Added new code to retrieve more information from Active Directory to better populate the Me Contact record.
-• Added new code to retrieve Kerberos information from Active Directory rather than contruct it.
-• Cleaned some dialogs and messaging a user may see during setup.
-• Clarified some instructions for administrators preparing the script.
-• Added more error checking.
-• Added setting to disable background Autodiscover.
-• Added setting to enable caching only mode (Download Headers Only).
-• Added setting to turn off unified Inbox (grouped folders).
-• Updated Active Directory NetBIOS domain lookup.
-
-4.5.2
-
-• Bug fix. In the "Begin account setup" section changed default upgradeResponse to "New" instead of "No.
-• Bug fix. In the "Begin account setup" section changed to getting count of OfficeIdentities instead of IdentityChoice.
-
-4.5.1
-
-• Added missing ldap port property to account setup.
-
-4.5
-
-• Added support for Entourage import.
-• Corrected Active Directory pathing for email lookups.
-• Added support for Lion and Mountain Lion Active Directory pathing.
-• Changed to "system info" to get short name.
-• Corrected an issue where first and last name were not set when using dscl (thank you to Matthew Cahill).
-• Corrected in-script instructions 2e: Name should be "Exchange Setup" not "Outlook Setup"
-
-4.0.1
-
-• Separated E-mail address and Display Name settings into two simpler properties to better address multiple types of account settings.
-• Corrected some settings where first name and last name may have been reversed.
-• Simplified the creation of the Me Contact record. Depending on the E-mail address format chosen, this part of the script may have thrown an error but appeared as if the schedule or work offline settings were throwing the error.
-
-4.0
-
-• Updated scripts for Outlook as part of Office for Mac 2011.
-
-3.1.0
-
-• Included compatibility for Entourage Web Services Edition used with Exchange Web Services
-
-3.0.1
-
-• Corrected an issue where hyphenated names were not correctly parsed when provided a full name.
-• Included instructions to set Entourage to work offline.
-• Included instructions to uncheck Entourage's option to alert the user about a script modifying the address book.
-• Changed the setup script to set the user's "email address" rather than the "default email address".
-• Added single quotes in "Copy Entourage Files.app" script to allow for folder names with spaces.
-
-3.0
-
-• Modified the original setup script to run under an Entourage schedule
-• Added step to create the user's Me contact record
-• Added an option for a different format of the Exchange server address for Exchange Server 2007
-• Included Entourage Exchange Setup 3.0 Administrator's Guide
-• Added fix for correctly setting maximum search results for LDAP (bug in Entourage 2008 only)
-
-2.0
-
-• Added the ability set Kerberos authentication with principal name (Entourage 2008 only)
-• Added seventh E-mail option (shortname@domain.com)
-• Added fix for correctly setting SSL authentication for LDAP (bug in Entourage 2008 only)
-
-1.2
-
-Note: The following bullet points complete the list of options that can be set for Exchange, Public folder and LDAP settings missing from the original scripts.
-
-• Added the ability to set the Exchange Server SSL
-• Added the ability to set the Exchange Server SSL port number
-• Changed FreeBusyServer property name to PublicFolderServer to better match Entourage's field name
-• Added the ability to set the Public Folder Server SSL
-• Added the ability to set the Public Folder Server SSL port number
-• Added the ability to enable LDAP Server authentication
-• Added the ability to set the LDAP Server SSL
-• Added the ability to set the LDAP Server SSL port number
-• Added the ability to set the LDAP Server maximum results returned
-
-• Added the option to turn off the "Send & Receive All" schedule. This schedule applies to POP and IMAP accounts only and does nothing with Exchange accounts.
-
-• Added a "Setup check" section to alert users if an Exchange account has already been configured in Entourage. The script is only necessary the first time a user needs to configure Entourage but some users double-click the script again instead of just launching Entourage. This is an effort to prevent a user from setting up a second account in Entourage pointing to the same Exchange account.
-
-• Changed the Account Name to display "Mailbox - Last, First" (or whatever selected name format is selected) to match the display that Outlook for Windows users see.
-
-• Added a customizable error message in case the Exchange account setup fails.
-
-1.1
-
-• Added the ability to specify the LDAP search base.
+These scripts may be freely modified for personal or commercial purposes but may not be republished for profit without prior consent.
