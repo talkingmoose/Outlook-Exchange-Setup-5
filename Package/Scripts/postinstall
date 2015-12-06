@@ -38,6 +38,9 @@ rm -R '/tmp/Outlook Exchange Setup 5.0'
 chown root:wheel /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 chmod 644 /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 
+# start the launch agent in case the current user account is the test account
+launchctl load -w /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+
 # make the shell script executable
 chmod +x '/Library/Talking Moose Industries/Scripts/OutlookExchangeSetupLaunchAgent.sh'
 
