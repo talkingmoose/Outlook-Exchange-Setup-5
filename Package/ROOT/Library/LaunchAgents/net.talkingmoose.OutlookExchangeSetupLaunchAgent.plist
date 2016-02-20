@@ -3,7 +3,7 @@
 <plist version="1.0">
 
 <!--
-Outlook Exchange Setup 5.0
+Outlook Exchange Setup 5
 © Copyright 2008-2015 William Smith
 bill@officeformachelp.com
 
@@ -13,7 +13,7 @@ http://creativecommons.org/licenses/by/4.0/
 This file is one of four files for assisting a user with configuring
 an Exchange account in Microsoft Outlook 2016 for Mac:
 
-1. Outlook Exchange Setup 5.1.0.scpt
+1. Outlook Exchange Setup 5.2.0.scpt
 2. OutlookExchangeSetupLaunchAgent.sh
 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 4. com.microsoft.Outlook.plist for creating a configuraiton profile

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # --------------------------------------------
-# Outlook Exchange Setup 5.0
+# Outlook Exchange Setup 5
 # © Copyright 2008-2015 William Smith
 # bill@officeformachelp.com
 # 
@@ -11,7 +11,7 @@
 # This file is one of four files for assisting a user with configuring
 # an Exchange account in Microsoft Outlook 2016 for Mac:
 # 
-# 1. Outlook Exchange Setup 5.1.0.scpt
+# 1. Outlook Exchange Setup 5.2.0.scpt
 # 2. OutlookExchangeSetupLaunchAgent.sh
 # 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 # 4. com.microsoft.Outlook.plist for creating a configuraiton profile
@@ -45,11 +45,11 @@ if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 		<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/sbin</string>
 	</dict>
 	<key>Label</key>
-	<string>net.talkingmoose.OutlookExchangeSetup5.1.0</string>
+	<string>net.talkingmoose.OutlookExchangeSetup5</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/bin/osascript</string>
-		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.1.0.scpt</string>
+		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.2.0.scpt</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
@@ -61,9 +61,9 @@ if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 </plist>
 '
 
-	/bin/echo "$launchagent" >> "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.1.0.plist"
-	/bin/chmod 644 "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.1.0.plist"
-	/bin/launchctl load "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.1.0.plist"
+	/bin/echo "$launchagent" >> "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
+	/bin/chmod 644 "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
+	/bin/launchctl load "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
 	
 fi
 
@@ -74,8 +74,8 @@ fi
 profile=$( /usr/bin/defaults read "$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist" Default_Profile_Name )
 
 if [[ -f "$HOME/Library/Group Containers/UBF8T346G9.Office/Outlook/Outlook 15 Profiles/$profile/Data/Exchange Accounts/"* ]] ; then
-	/bin/launchctl unload "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.1.0.plist"
-	/bin/rm "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.1.0.plist"
+	/bin/launchctl unload "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
+	/bin/rm "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
 fi
 
 exit 0
