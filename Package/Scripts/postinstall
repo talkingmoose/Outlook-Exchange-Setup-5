@@ -2,7 +2,7 @@
 
 # --------------------------------------------
 # Outlook Exchange Setup 5
-# © Copyright 2008-2015 William Smith
+# © Copyright 2008-2016 William Smith
 # bill@officeformachelp.com
 # 
 # Except where otherwise noted, this work is licensed under
@@ -11,7 +11,7 @@
 # This file accompanies four files for assisting a user with configuring
 # an Exchange account in Microsoft Outlook 2016 for Mac:
 # 
-# 1. Outlook Exchange Setup 5.2.0.scpt
+# 1. Outlook Exchange Setup 5.2.1.scpt
 # 2. OutlookExchangeSetupLaunchAgent.sh
 # 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 # 4. com.microsoft.Outlook.plist for creating a configuraiton profile

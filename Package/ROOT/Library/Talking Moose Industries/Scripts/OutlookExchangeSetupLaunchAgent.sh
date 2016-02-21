@@ -2,7 +2,7 @@
 
 # --------------------------------------------
 # Outlook Exchange Setup 5
-# © Copyright 2008-2015 William Smith
+# © Copyright 2008-2016 William Smith
 # bill@officeformachelp.com
 # 
 # Except where otherwise noted, this work is licensed under
@@ -11,7 +11,7 @@
 # This file is one of four files for assisting a user with configuring
 # an Exchange account in Microsoft Outlook 2016 for Mac:
 # 
-# 1. Outlook Exchange Setup 5.2.0.scpt
+# 1. Outlook Exchange Setup 5.2.1.scpt
 # 2. OutlookExchangeSetupLaunchAgent.sh
 # 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 # 4. com.microsoft.Outlook.plist for creating a configuraiton profile
@@ -23,15 +23,39 @@
 # please let me know. It is only compatible with Outlook 2016 for Mac.
 # --------------------------------------------
 
+##### Definitions
+
+logfile="$HOME/Library/Logs/OutlookExchangeSetup5.log"
+
+###### Functions
+
+function logresult()	{
+	if [ $? = 0 ] ; then
+	  /bin/date "+%-m/%-d/%y %-H:%M:%S %p	$1" >> "$logfile"
+	else
+	  /bin/date "+%-m/%-d/%y %-H:%M:%S %p	$2" >> "$logfile"
+	fi
+}
+
 # Check for the existence of the UBF8T346G9.Office folder.
 # If it doesn't exist then no Office 2016 for Mac application has run.
-# Create the folder create the OutlookProfile.plist file.
+# Create the folder and create the OutlookProfile.plist file.
 # Also create a user LaunchAgents folder and an Outlook setup launchd agent.
 
 if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 	/bin/mkdir -p "$HOME/Library/Group Containers/UBF8T346G9.Office"
+	
+	logresult "Folder \"$HOME/Library/Group Containers/UBF8T346G9.Office\" does not exist."
+	
+	logresult "Create folder \"$HOME/Library/Group Containters/UBF8T346G9.Office\": Successful." "Create folder \"$HOME/Library/Group Containters/UBF8T346G9.Office\": Failed."
+	
 	/usr/bin/touch "$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist"
+	
+	logresult "Create empty file \"$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist\": Successful." "Create empty file \"$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist\": Failed."
+	
 	/bin/mkdir -p "$HOME/Library/LaunchAgents"
+	
+	logresult "Create folder \"$HOME/Library/LaunchAgents\": Successful." "Create folder \"$HOME/Library/LaunchAgents\": Failed."
 
 	launchagent='<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -49,7 +73,7 @@ if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/bin/osascript</string>
-		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.2.0.scpt</string>
+		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.2.1.scpt</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
@@ -62,20 +86,17 @@ if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 '
 
 	/bin/echo "$launchagent" >> "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
-	/bin/chmod 644 "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
-	/bin/launchctl load "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
 	
-fi
+	logresult "Create launch agent \"$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist\": Successful." "Create folder \"$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist\": Failed."
 
-# Check for the existence of anything in an Outlook profile's Exchange Accounts folder.
-# If anything exists, an Exchange account exists. Nothing more to do.
-# Unload and remove the launch agent if it stil exists.
+	/bin/chmod 644 "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
 
-profile=$( /usr/bin/defaults read "$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist" Default_Profile_Name )
+	logresult "Set launch agent permissions to 644 (-rw-r--r--): Successful." "Set launch agent permissions to 644 (-rw-r--r--): Failed."
 
-if [[ -f "$HOME/Library/Group Containers/UBF8T346G9.Office/Outlook/Outlook 15 Profiles/$profile/Data/Exchange Accounts/"* ]] ; then
-	/bin/launchctl unload "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
-	/bin/rm "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
+	/bin/launchctl load "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist"
+
+	logresult "Load launch agent: Successful." "Load launch agent: Failed."
+	
 fi
 
 exit 0
