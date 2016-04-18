@@ -11,7 +11,7 @@
 # This file is one of four files for assisting a user with configuring
 # an Exchange account in Microsoft Outlook 2016 for Mac:
 # 
-# 1. Outlook Exchange Setup 5.2.1.scpt
+# 1. Outlook Exchange Setup 5.3.0.scpt
 # 2. OutlookExchangeSetupLaunchAgent.sh
 # 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 # 4. com.microsoft.Outlook.plist for creating a configuraiton profile
@@ -43,10 +43,9 @@ function logresult()	{
 # Also create a user LaunchAgents folder and an Outlook setup launchd agent.
 
 if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
-	/bin/mkdir -p "$HOME/Library/Group Containers/UBF8T346G9.Office"
-	
 	logresult "Folder \"$HOME/Library/Group Containers/UBF8T346G9.Office\" does not exist."
 	
+	/bin/mkdir -p "$HOME/Library/Group Containers/UBF8T346G9.Office"
 	logresult "Create folder \"$HOME/Library/Group Containters/UBF8T346G9.Office\": Successful." "Create folder \"$HOME/Library/Group Containters/UBF8T346G9.Office\": Failed."
 	
 	/usr/bin/touch "$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist"
@@ -73,7 +72,7 @@ if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/bin/osascript</string>
-		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.2.1.scpt</string>
+		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.3.0.scpt</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
@@ -97,6 +96,22 @@ if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 
 	logresult "Load launch agent: Successful." "Load launch agent: Failed."
 	
+else
+	if [[ -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
+		logresult "$HOME/Library/Group Containers/UBF8T346G9.Office folder already exists. Doing nothing." "$HOME/Library/Group Containers/UBF8T346G9.Office folder does not exist but it should exist already. Something may be wrong."
+	fi
+	
+	if [[ -f "$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist" ]] ; then
+		logresult "$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist already exists. Doing nothing." "$HOME/Library/Group Containers/UBF8T346G9.Office/OutlookProfile.plist does not exist but it should exist already. Something may be wrong."
+	fi
+	
+	if [[ -d "$HOME/Library/LaunchAgents" ]] ; then
+		logresult "$HOME/Library/LaunchAgents already exists. Doing nothing." "$HOME/Library/LaunchAgents does not exist but it should exist already. Something may be wrong."
+	fi
+	
+	if [[ ! -f "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist" ]] ; then
+		logresult "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist does not exist. Doing nothing." "$HOME/Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetup5.plist exists. Something may be wrong."
+	fi
 fi
 
 exit 0
