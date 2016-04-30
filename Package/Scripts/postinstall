@@ -11,7 +11,7 @@
 # This file accompanies four files for assisting a user with configuring
 # an Exchange account in Microsoft Outlook 2016 for Mac:
 # 
-# 1. Outlook Exchange Setup 5.3.0.scpt
+# 1. Outlook Exchange Setup 5.4.0.scpt
 # 2. OutlookExchangeSetupLaunchAgent.sh
 # 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 # 4. com.microsoft.Outlook.plist for creating a configuraiton profile
@@ -24,24 +24,26 @@
 # --------------------------------------------
 
 # install the Outlook configuration profile plus additional profiles
-cd '/tmp/Outlook Exchange Setup 5'
-PROFILES=$( ls | grep .mobileconfig )
+/usr/bin/cd '/tmp/Outlook Exchange Setup 5'
+PROFILES=$( /bin/ls | /usr/bin/grep .mobileconfig )
 for APROFILE in $PROFILES
 do
 	profiles -IF $APROFILE
 done
 
 # remove the temporary profiles folder from /private/tmp
-rm -R '/tmp/Outlook Exchange Setup 5'
+/bin/rm -R '/tmp/Outlook Exchange Setup 5'
 
 # adjust ownership and permissions for the launch agent
-chown root:wheel /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
-chmod 644 /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+/usr/sbin/chown root:wheel /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+/bin/chmod 644 /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 
 # start the launch agent in case the current user account is the test account
-launchctl load -w /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+if [ $( /usr/bin/logname ) != "root" ] ; then
+	/usr/bin/sudo -u $( /usr/bin/logname ) launchctl load -w /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
+fi
 
 # make the shell script executable
-chmod +x '/Library/Talking Moose Industries/Scripts/OutlookExchangeSetupLaunchAgent.sh'
+/bin/chmod +x '/Library/Talking Moose Industries/Scripts/OutlookExchangeSetupLaunchAgent.sh'
 
 exit 0
