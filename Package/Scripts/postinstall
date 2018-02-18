@@ -2,8 +2,8 @@
 
 # --------------------------------------------
 # Outlook Exchange Setup 5
-# © Copyright 2008-2017 William Smith
-# bill@officeformachelp.com
+# © Copyright 2008-2018 William Smith
+# bill@talkingmoose.net
 # 
 # Except where otherwise noted, this work is licensed under
 # http://creativecommons.org/licenses/by/4.0/
@@ -11,7 +11,7 @@
 # This file accompanies four files for assisting a user with configuring
 # an Exchange account in Microsoft Outlook 2016 for Mac:
 # 
-# 1. Outlook Exchange Setup 5.5.1.scpt
+# 1. Outlook Exchange Setup 5.5.2.scpt
 # 2. OutlookExchangeSetupLaunchAgent.sh
 # 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 # 4. com.microsoft.Outlook.plist for creating a configuraiton profile
@@ -24,7 +24,7 @@
 # --------------------------------------------
 
 # install the Outlook configuration profile plus additional profiles
-/usr/bin/cd '/tmp/Outlook Exchange Setup 5'
+cd '/private/tmp/Outlook Exchange Setup 5'
 PROFILES=$( /bin/ls | /usr/bin/grep .mobileconfig )
 for APROFILE in $PROFILES
 do
@@ -32,7 +32,7 @@ do
 done
 
 # remove the temporary profiles folder from /private/tmp
-/bin/rm -R '/tmp/Outlook Exchange Setup 5'
+/bin/rm -R '/private/tmp/Outlook Exchange Setup 5'
 
 # adjust ownership and permissions for the launch agent
 /usr/sbin/chown root:wheel /Library/LaunchAgents/net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
