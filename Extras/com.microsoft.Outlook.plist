@@ -6,11 +6,6 @@
 	<true/>
 	<key>OUIWhatsNewLastShownLink</key>
 	<string>624956</string>
-	<key>OUIWhatsNewShownItemIds</key>
-	<array>
-		<integer>1</integer>
-		<integer>2</integer>
-	</array>
 	<key>OverrideAccountConfigurationWindow</key>
 	<true/>
 	<key>kSubUIAppCompletedFirstRunSetup1507</key>
