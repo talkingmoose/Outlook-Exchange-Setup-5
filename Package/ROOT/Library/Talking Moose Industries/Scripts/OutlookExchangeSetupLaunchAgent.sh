@@ -11,7 +11,7 @@
 # This file is one of four files for assisting a user with configuring
 # an Exchange account in Microsoft Outlook 2016 for Mac:
 # 
-# 1. Outlook Exchange Setup 5.5.2.scpt
+# 1. Outlook Exchange Setup 5.5.3.scpt
 # 2. OutlookExchangeSetupLaunchAgent.sh
 # 3. net.talkingmoose.OutlookExchangeSetupLaunchAgent.plist
 # 4. com.microsoft.Outlook.plist for creating a configuraiton profile
@@ -72,7 +72,7 @@ if [[ ! -d "$HOME/Library/Group Containers/UBF8T346G9.Office" ]] ; then
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/bin/osascript</string>
-		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.5.2.scpt</string>
+		<string>/Library/Talking Moose Industries/Scripts/Outlook Exchange Setup 5.5.3.scpt</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
